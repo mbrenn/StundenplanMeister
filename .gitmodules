@@ -1,0 +1,3 @@
+[submodule "deps/datenmeister"]
+	path = deps/datenmeister
+	url = https://github.com/mbrenn/datenmeister-deliverables.git
