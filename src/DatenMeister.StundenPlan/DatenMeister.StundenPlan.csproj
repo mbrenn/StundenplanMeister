@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TypeScriptToolsVersion>4.7.4</TypeScriptToolsVersion>
+        <TypeScriptNuGetToolsVersion>4.7.4</TypeScriptNuGetToolsVersion>
+        <TypeScriptTarget>ES6</TypeScriptTarget>
+        <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+        <TypeScriptESModuleInterop>True</TypeScriptESModuleInterop>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="resources\stundenplan.css" />
+      <None Remove="resources\stundenplan.min.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="resources\stundenplan.min.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="resources\DatenMeister.StundenPlan.js" />
+      <EmbeddedResource Include="resources\stundenplan.css" />
+      <EmbeddedResource Include="xmi\StundenPlan.Forms.xml" />
+      <EmbeddedResource Include="xmi\StundenPlan.Types.xml" />
+      <EmbeddedResource Include="resources\stundenplan.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <TypeScriptConfigFile Include="tsconfig.json" />
+      <Content Update="tsconfig.json">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Model\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="DatenMeister.Core">
+        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="DatenMeister.Extent.Manager">
+        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Extent.Manager.dll</HintPath>
+      </Reference>
+      <Reference Include="DatenMeister.Plugins">
+        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Plugins.dll</HintPath>
+      </Reference>
+      <Reference Include="DatenMeister.WebServer.Library">
+        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.WebServer.Library.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

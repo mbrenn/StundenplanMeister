@@ -158,3 +158,6 @@ $RECYCLE.BIN/
 /src/.vs/config/applicationhost.config
 
 .nyc_output/
+
+src/.idea
+src/.vs

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateStundenPlanViaExcel", "CreateStundenPlanViaExcel\CreateStundenPlanViaExcel.csproj", "{F2811C39-30CF-4C83-A4D7-A69E14811F1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatenMeister.StundenPlan", "DatenMeister.StundenPlan\DatenMeister.StundenPlan.csproj", "{0924BE12-C237-4B70-BE2A-BA18AD79D996}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2811C39-30CF-4C83-A4D7-A69E14811F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2811C39-30CF-4C83-A4D7-A69E14811F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2811C39-30CF-4C83-A4D7-A69E14811F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2811C39-30CF-4C83-A4D7-A69E14811F1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0924BE12-C237-4B70-BE2A-BA18AD79D996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0924BE12-C237-4B70-BE2A-BA18AD79D996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0924BE12-C237-4B70-BE2A-BA18AD79D996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0924BE12-C237-4B70-BE2A-BA18AD79D996}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
