@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <item>
-  <meta p2:id="fdebd604-a4f7-4c4f-8fd4-cdba0ee79bda" p2:type="dm:///_internal/types/internal#DatenMeister.Models.Runtime.ExtentProperties" xmlns:p2="http://www.omg.org/spec/XMI/20131001" xmlns="http://datenmeister.net/" __ExtentType="Uml.Classes " __uri="dm:///stundenplan.types.work" />
+  <meta p2:id="fdebd604-a4f7-4c4f-8fd4-cdba0ee79bda" p2:type="dm:///_internal/types/internal#DatenMeister.Models.Runtime.ExtentProperties" xmlns:p2="http://www.omg.org/spec/XMI/20131001" xmlns="http://datenmeister.net/" __ExtentType="Uml.Classes " __uri="dm:///edit.stundenmeister.types" />
   <item p1:type="dm:///_internal/model/uml#Package" p1:id="_package_StundenPlan" xmlns:p1="http://www.omg.org/spec/XMI/20131001" name="Types">
     <packagedElement p2:type="dm:///_internal/model/uml#Class" p2:id="954ad359-1a92-4661-bc58-83ea4517d493" name="WeeklyPeriodicEvent" xmlns:p2="http://www.omg.org/spec/XMI/20131001">
       <isAbstract p2:id="e24cf76e-1d25-49bb-be9e-4cafc8ce7b6f" />
@@ -191,6 +191,15 @@
       <isFinalSpecialization p2:id="1aed7a22-d674-4554-99d2-e74dfe25dcd0" />
       <isLeaf p2:id="58351761-a20d-4a3e-91c3-745205c11988" />
       <generalization p2:type="dm:///_internal/model/uml#Generalization" p2:id="a0e972a4-042e-4817-9a67-f0470991a926" general-ref="dm:///_internal/types/internal#DatenMeister.Models.Forms.Form" isSubstitutable="true" />
+    </packagedElement>
+  </item>
+  <item p2:type="dm:///_internal/model/uml#Package" p2:id="c7c22d90-4c86-4953-92b7-c6a4ad1c83d0" name="Report" xmlns:p2="http://www.omg.org/spec/XMI/20131001">
+    <visibility p2:id="b0555c3b-e4cd-4963-ba36-b34fa6a37217" />
+    <packagedElement p2:type="dm:///_internal/model/uml#Class" p2:id="fefebd7f-03b5-49c9-9118-491c33f87956" name="StundenPlanReportElement">
+      <isAbstract p2:id="ff330113-a26c-43e3-9eee-8f6b3a382971" />
+      <isActive p2:id="d0821042-50e9-49e1-9a20-e447674bad12" />
+      <isFinalSpecialization p2:id="574dd420-e129-4474-8967-f3b392ab199d" />
+      <isLeaf p2:id="a31ce489-0a01-4c93-a27c-8b4d98aa8b8c" />
     </packagedElement>
   </item>
 </item>

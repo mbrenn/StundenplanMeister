@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/jquery": "^3.5.29",
+    "@types/mocha": "^10.0.6"
+  }
+}

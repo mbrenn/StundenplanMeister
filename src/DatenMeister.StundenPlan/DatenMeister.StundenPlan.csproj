@@ -54,6 +54,9 @@
       <Reference Include="DatenMeister.Plugins">
         <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Plugins.dll</HintPath>
       </Reference>
+      <Reference Include="DatenMeister.Reports">
+        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Reports.dll</HintPath>
+      </Reference>
       <Reference Include="DatenMeister.WebServer.Library">
         <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.WebServer.Library.dll</HintPath>
       </Reference>

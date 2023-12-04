@@ -8,7 +8,7 @@
     "module": "ES2020",
     "baseUrl": "./",
     "paths": {
-      "/js/datenmeister/*": [ "../../Web/DatenMeister.WebServer/wwwroot/js/datenmeister/*" ],
+      "/js/datenmeister/*": [ "../../../datenmeister-new/src/Web/DatenMeister.WebServer/wwwroot/js/datenmeister/*" ],
       "module/*": [ "./DatenMeister.StundenPlan/resources/*" ]
     }
   },

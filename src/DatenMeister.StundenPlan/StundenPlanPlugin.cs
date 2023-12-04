@@ -4,11 +4,14 @@ using DatenMeister.Extent.Manager;
 using DatenMeister.Extent.Manager.Extents.Configuration;
 using DatenMeister.Extent.Manager.ExtentStorage;
 using DatenMeister.Plugins;
+using DatenMeister.Reports.Html;
 using DatenMeister.StundenPlan.Model;
+using DatenMeister.StundenPlan.Reporting;
 using DatenMeister.WebServer.Library.PageRegistration;
 
 namespace DatenMeister.StundenPlan;
 
+// ReSharper disable once UnusedType.Global
 public class StundenPlanPlugin : IDatenMeisterPlugin
 {
     private readonly IWorkspaceLogic _workspaceLogic;
@@ -29,6 +32,14 @@ public class StundenPlanPlugin : IDatenMeisterPlugin
     
     public void Start(PluginLoadingPosition position)
     {
+        LoadTypesAndForms();
+        AddExtentType();
+        AddWebResources();
+        AddReporting();
+    }
+
+    private void LoadTypesAndForms()
+    {
         // Adds the types and the forms
         var extentManager = new ExtentManager(_workspaceLogic, _scopeStorage);
         extentManager.CreateExtentByResource(
@@ -36,21 +47,27 @@ public class StundenPlanPlugin : IDatenMeisterPlugin
             "DatenMeister.StundenPlan.xmi.StundenPlan.Forms.xml",
             UriStundenPlanForm,
             "Management");
-        
+
         extentManager.CreateExtentByResource(
             typeof(StundenPlanPlugin),
             "DatenMeister.StundenPlan.xmi.StundenPlan.Types.xml",
             UriStundenPlanTypes,
             "Types");
+    }
 
+    private void AddExtentType()
+    {
         // Adds the extent type
         var extentSettings = _scopeStorage.Get<ExtentSettings>();
         var extentSetting =
             new ExtentType(ExtentTypeName);
         extentSetting.rootElementMetaClasses.Add(_Types.TheOne.__WeeklyPeriodicEvent);
-        
-        extentSettings.extentTypeSettings.Add(extentSetting);
 
+        extentSettings.extentTypeSettings.Add(extentSetting);
+    }
+
+    private void AddWebResources()
+    {
         // Adds the javascript
         var pluginLogic = new PageRegistrationLogic(_scopeStorage.Get<PageRegistrationData>());
         pluginLogic.AddJavaScriptFromResource(
@@ -70,5 +87,11 @@ public class StundenPlanPlugin : IDatenMeisterPlugin
             "DatenMeister.StundenPlan.resources.stundenplan.css",
             "stundenplan.css",
             "../../Apps/Datenmeister.StundenPlan/resources/stundenplan.css");
+    }
+
+    private void AddReporting()
+    {
+        var reportEvaluators = _scopeStorage.Get<HtmlReportEvaluators>();
+        reportEvaluators.AddEvaluator(new HtmlStundenPlan());
     }
 }

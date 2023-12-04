@@ -49,7 +49,7 @@ namespace DatenMeister.StundenPlan.Model
         }
 
         public _WeeklyPeriodicEvent @WeeklyPeriodicEvent = new _WeeklyPeriodicEvent();
-        public MofObjectShadow @__WeeklyPeriodicEvent = new MofObjectShadow("dm:///types.stundenplan.datenmeister/#954ad359-1a92-4661-bc58-83ea4517d493");
+        public MofObjectShadow @__WeeklyPeriodicEvent = new MofObjectShadow("dm:///types/#954ad359-1a92-4661-bc58-83ea4517d493");
 
         public class _WeeklyScheduleView
         {
@@ -68,7 +68,7 @@ namespace DatenMeister.StundenPlan.Model
         }
 
         public _WeeklyScheduleView @WeeklyScheduleView = new _WeeklyScheduleView();
-        public MofObjectShadow @__WeeklyScheduleView = new MofObjectShadow("dm:///types.stundenplan.datenmeister/#e722b04b-4392-4695-ada4-168397d7edc0");
+        public MofObjectShadow @__WeeklyScheduleView = new MofObjectShadow("dm:///types/#e722b04b-4392-4695-ada4-168397d7edc0");
 
         public static readonly _Types TheOne = new _Types();
 
@@ -102,9 +102,22 @@ namespace DatenMeister.StundenPlan.Model
         }
 
         public _SchedulerForm @SchedulerForm = new _SchedulerForm();
-        public MofObjectShadow @__SchedulerForm = new MofObjectShadow("dm:///types.stundenplan.datenmeister/#9b107f7e-59c0-4164-b761-78764223afa2");
+        public MofObjectShadow @__SchedulerForm = new MofObjectShadow("dm:///types/#9b107f7e-59c0-4164-b761-78764223afa2");
 
         public static readonly _Forms TheOne = new _Forms();
+
+    }
+
+    public class _Report
+    {
+        public class _StundenPlanReportElement
+        {
+        }
+
+        public _StundenPlanReportElement @StundenPlanReportElement = new _StundenPlanReportElement();
+        public MofObjectShadow @__StundenPlanReportElement = new MofObjectShadow("dm:///types/#fefebd7f-03b5-49c9-9118-491c33f87956");
+
+        public static readonly _Report TheOne = new _Report();
 
     }
 
