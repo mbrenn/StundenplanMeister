@@ -5,7 +5,6 @@ using DatenMeister.Extent.Manager.Extents.Configuration;
 using DatenMeister.Extent.Manager.ExtentStorage;
 using DatenMeister.Plugins;
 using DatenMeister.Reports.Html;
-using DatenMeister.StundenPlan.Model;
 using DatenMeister.StundenPlan.Reporting;
 using DatenMeister.WebServer.Library.PageRegistration;
 
@@ -61,7 +60,7 @@ public class StundenPlanPlugin : IDatenMeisterPlugin
         var extentSettings = _scopeStorage.Get<ExtentSettings>();
         var extentSetting =
             new ExtentType(ExtentTypeName);
-        extentSetting.rootElementMetaClasses.Add(_Types.TheOne.__WeeklyPeriodicEvent);
+        extentSetting.rootElementMetaClasses.Add(Model._Types.TheOne.__WeeklyPeriodicEvent);
 
         extentSettings.extentTypeSettings.Add(extentSetting);
     }

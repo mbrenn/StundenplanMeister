@@ -23,15 +23,14 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
 
 {
     // First of all, import the excel
-    var action = InMemoryObject.CreateEmpty(
-        _DatenMeister.TheOne.Actions.__LoadExtentAction);
+    var loadAction = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Actions.__LoadExtentAction);
 
-    action.set(_DatenMeister._Actions._LoadExtentAction.dropExisting, true);
-    action.set(_DatenMeister._Actions._LoadExtentAction.name, "Excel Import");
+    loadAction.set(_DatenMeister._Actions._LoadExtentAction.dropExisting, true);
+    loadAction.set(_DatenMeister._Actions._LoadExtentAction.name, "Excel Import");
 
     var configuration = InMemoryObject.CreateEmpty(
         _DatenMeister.TheOne.ExtentLoaderConfigs.__ExcelReferenceLoaderConfig);
-    action.set(_DatenMeister._Actions._LoadExtentAction.configuration, configuration);
+    loadAction.set(_DatenMeister._Actions._LoadExtentAction.configuration, configuration);
     configuration.set(
         _DatenMeister._ExtentLoaderConfigs._ExcelLoaderConfig.filePath,
         "C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.xlsx");
@@ -40,19 +39,63 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
         _DatenMeister._ExtentLoaderConfigs._ExcelLoaderConfig.extentUri,
         "dm:///stundenplan");
     configuration.set(
-        _DatenMeister._ExtentLoaderConfigs._ExcelLoaderConfig.sheetName, 
+        _DatenMeister._ExtentLoaderConfigs._ExcelLoaderConfig.workspaceId,
+        WorkspaceNames.WorkspaceData);
+    configuration.set(
+        _DatenMeister._ExtentLoaderConfigs._ExcelLoaderConfig.sheetName,
         "events");
     configuration.set(
         _DatenMeister._ExtentLoaderConfigs._ExcelLoaderConfig.hasHeader, true);
 
     var actionLogic = dm.Resolve<ActionLogic>();
-    await actionLogic.ExecuteAction(action);
+    await actionLogic.ExecuteAction(loadAction);
 
     var extent = dm.WorkspaceLogic.FindExtent(
         WorkspaceNames.WorkspaceData,
         "dm:///stundenplan");
-    
+
     Console.WriteLine(extent);
+    
+    // Now create the report
+    var report = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.__HtmlReportInstance);
+    report.set(_DatenMeister._Reports._HtmlReportInstance.name, "The Report");
+
+    var reportHeader = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.Elements.__ReportHeadline);
+    reportHeader.set(_DatenMeister._Reports._Elements._ReportHeadline.title, "Your StundenPlan");
+
+    // Attach the datasource
+    var dynamicViewNode = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.DataViews.__DynamicSourceNode);
+    dynamicViewNode.set(_DatenMeister._DataViews._DynamicSourceNode.name, "Meetings");
+
+    var stundenPlanReportElement = InMemoryObject.CreateEmpty(DatenMeister.StundenPlan.Model._Report.TheOne.__StundenPlanReportElement);
+    stundenPlanReportElement.set(DatenMeister.StundenPlan.Model._Report._StundenPlanReportElement.viewNode, dynamicViewNode);
+
+    var reportDefinition = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.__ReportDefinition);
+    reportDefinition.set(_DatenMeister._Reports._ReportDefinition.elements, new[]
+    {
+        reportHeader,
+        stundenPlanReportElement
+    });
+
+    report.set(_DatenMeister._Reports._HtmlReportInstance.reportDefinition, reportDefinition);
+
+    var reportSource = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.__ReportInstanceSource);
+    reportSource.set(_DatenMeister._Reports._ReportInstanceSource.name, "Meetings");
+    reportSource.set(_DatenMeister._Reports._ReportInstanceSource.workspaceId, WorkspaceNames.WorkspaceData);
+    reportSource.set(_DatenMeister._Reports._ReportInstanceSource.path, "dm:///stundenplan");
+
+
+    var reportAction = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Actions.Reports.__HtmlReportAction);
+    reportAction.set(_DatenMeister._Actions._Reports._HtmlReportAction.reportInstance, report);
+    reportAction.set(_DatenMeister._Actions._Reports._HtmlReportAction.filePath,
+        "C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.html");
+    reportAction.set(_DatenMeister._Actions._Reports._HtmlReportAction.name, "The Report");
+
+
+
+    report.set(_DatenMeister._Reports._ReportInstance.sources, new[] { reportSource });
+
+    await actionLogic.ExecuteAction(reportAction);
 }
 
 

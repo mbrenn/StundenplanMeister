@@ -44,6 +44,7 @@ export var _Report;
 (function (_Report) {
     class _StundenPlanReportElement {
     }
+    _StundenPlanReportElement.viewNode = "viewNode";
     _Report._StundenPlanReportElement = _StundenPlanReportElement;
     _Report.__StundenPlanReportElement_Uri = "dm:///types/#fefebd7f-03b5-49c9-9118-491c33f87956";
 })(_Report || (_Report = {}));

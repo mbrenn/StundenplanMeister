@@ -49,6 +49,7 @@ export namespace _Report
 {
         export class _StundenPlanReportElement
         {
+            static viewNode = "viewNode";
         }
 
         export const __StundenPlanReportElement_Uri = "dm:///types/#fefebd7f-03b5-49c9-9118-491c33f87956";

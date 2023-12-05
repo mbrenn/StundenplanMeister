@@ -1,4 +1,4 @@
-../deps/datenmeister/assemblies/Release/net7.0/DatenMeister.SourceGeneration.Console.exe "C:\Projekte\StundenplanMeister\src\DatenMeister.StundenPlan\xmi\StundenPlan.Types.xml" C:\Projekte\StundenplanMeister\src\DatenMeister.StundenPlan\Model
+../deps/datenmeister/assemblies/Release/net7.0/DatenMeister.SourceGeneration.Console.exe "C:\Projekte\StundenplanMeister\src\DatenMeister.StundenPlan\xmi\StundenPlan.Types.xml" C:\Projekte\StundenplanMeister\src\DatenMeister.StundenPlan\Model StundenPlan.Model
 
 # Create .js files
 Write-Output ""

@@ -92,9 +92,6 @@
       <Reference Include="DatenMeister.Reports">
         <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Reports.dll</HintPath>
       </Reference>
-      <Reference Include="DatenMeister.StundenPlan">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.StundenPlan.dll</HintPath>
-      </Reference>
       <Reference Include="DatenMeister.TemporaryExtent">
         <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.TemporaryExtent.dll</HintPath>
       </Reference>

@@ -112,6 +112,9 @@ namespace DatenMeister.StundenPlan.Model
     {
         public class _StundenPlanReportElement
         {
+            public static string @viewNode = "viewNode";
+            public IElement? @_viewNode = null;
+
         }
 
         public _StundenPlanReportElement @StundenPlanReportElement = new _StundenPlanReportElement();

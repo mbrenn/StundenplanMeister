@@ -200,6 +200,7 @@
       <isActive p2:id="d0821042-50e9-49e1-9a20-e447674bad12" />
       <isFinalSpecialization p2:id="574dd420-e129-4474-8967-f3b392ab199d" />
       <isLeaf p2:id="a31ce489-0a01-4c93-a27c-8b4d98aa8b8c" />
+      <ownedAttribute p2:type="dm:///_internal/model/uml#Property" p2:id="32f4d8a2-1ed3-4182-8855-91f5af67c0ac" name="viewNode" type-ref="dm:///_internal/types/internal#DatenMeister.Models.DataViews.ViewNode"></ownedAttribute>
     </packagedElement>
   </item>
 </item>
