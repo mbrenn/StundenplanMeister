@@ -69,6 +69,8 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
 
     var stundenPlanReportElement = InMemoryObject.CreateEmpty(DatenMeister.StundenPlan.Model._Report.TheOne.__StundenPlanReportElement);
     stundenPlanReportElement.set(DatenMeister.StundenPlan.Model._Report._StundenPlanReportElement.viewNode, dynamicViewNode);
+    stundenPlanReportElement.set(DatenMeister.StundenPlan.Model._Report._StundenPlanReportElement.skipWeekend, false);
+    stundenPlanReportElement.set(DatenMeister.StundenPlan.Model._Report._StundenPlanReportElement.weeks, 4);
 
     var reportDefinition = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.__ReportDefinition);
     reportDefinition.set(_DatenMeister._Reports._ReportDefinition.elements, new[]

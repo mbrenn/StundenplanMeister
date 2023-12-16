@@ -115,6 +115,12 @@ namespace DatenMeister.StundenPlan.Model
             public static string @viewNode = "viewNode";
             public IElement? @_viewNode = null;
 
+            public static string @weeks = "weeks";
+            public IElement? @_weeks = null;
+
+            public static string @skipWeekend = "skipWeekend";
+            public IElement? @_skipWeekend = null;
+
         }
 
         public _StundenPlanReportElement @StundenPlanReportElement = new _StundenPlanReportElement();

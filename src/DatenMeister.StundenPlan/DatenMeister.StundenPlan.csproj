@@ -60,6 +60,12 @@
       <Reference Include="DatenMeister.WebServer.Library">
         <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.WebServer.Library.dll</HintPath>
       </Reference>
+      <Reference Include="DatenMeister.HtmlEngine">
+        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.HtmlEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="DatenMeister.DataView">
+        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.DataView.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>
