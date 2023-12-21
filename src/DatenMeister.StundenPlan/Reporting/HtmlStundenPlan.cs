@@ -4,23 +4,16 @@ using DatenMeister.HtmlEngine;
 using DatenMeister.Reports;
 using DatenMeister.Reports.Generic;
 using DatenMeister.Reports.Html;
+using DatenMeister.StundenPlan.Logic;
 using DatenMeister.StundenPlan.Model;
+using static DatenMeister.StundenPlan.Model._Types;
 
 namespace DatenMeister.StundenPlan.Reporting;
 
-public class HtmlStundenPlan : IGenericReportEvaluator<HtmlReportCreator> 
+public class HtmlStundenPlan : IGenericReportEvaluator<HtmlReportCreator>
 {
-    public bool IsRelevant(IElement element)
-    {
-
-        var metaClass = element.getMetaClass();
-        return metaClass?.equals(_Report.TheOne.__StundenPlanReportElement) == true;
-    }
-
     public void Evaluate(ReportLogic reportLogic, HtmlReportCreator reportCreator, IElement reportNode)
     {
-        reportCreator.HtmlReporter.Add(
-            new HtmlEngine.HtmlHeadline("We are having a headline", 1));
         var skipWeekend = reportNode.getOrDefault<bool>(_Report._StundenPlanReportElement.skipWeekend);
         var weeks = reportNode.getOrDefault<int>(_Report._StundenPlanReportElement.weeks);
 
@@ -28,9 +21,9 @@ public class HtmlStundenPlan : IGenericReportEvaluator<HtmlReportCreator>
             ReportLogic.GetViewNode(
                 reportNode,
                 _Report._StundenPlanReportElement.viewNode);
-        
+
         var dataviewEvaluation = reportLogic.GetDataViewEvaluation();
-        var elements = dataviewEvaluation.GetElementsForViewNode(viewNode);
+        var elements = dataviewEvaluation.GetElementsForViewNode(viewNode).OfType<IElement>().ToList(); 
 
         // Ok, now we create the table
         var table = new HtmlTable();
@@ -56,13 +49,35 @@ public class HtmlStundenPlan : IGenericReportEvaluator<HtmlReportCreator>
             var row = new HtmlTableRow();
             for (var w = 0; w < (skipWeekend ? 5 : 7); w++)
             {
-                var cell = new HtmlTableCell("-");
+                var events = 
+                    EventsLogic.GetEventsOnWeekDay(n, w + 1, elements); // +1 to match day numbering (1-7).ToList();
+
+                var list = new HtmlListElement();
+
+                foreach (var eventElement in events)
+                {
+                    // Assuming eventElement contains necessary information like name and time
+                    var eventName = eventElement.getOrDefault<string>(_WeeklyPeriodicEvent.@name);
+                    var eventTime = eventElement.getOrDefault<DateTime>(_WeeklyPeriodicEvent.@timeStart);
+                    var hoursDuration = eventElement.getOrDefault<double>(_WeeklyPeriodicEvent.hoursDuration);
+
+                    list.Items.Add($"{eventTime:HH:mm}-{eventTime.AddHours(hoursDuration):HH:mm}: {eventName}");
+                }
+
+                var cell = new HtmlTableCell(list);
                 row.Add(cell);
+
             }
 
             table.AddRow(row);
         }
 
         reportCreator.HtmlReporter.Add(table);
+    }
+
+    public bool IsRelevant(IElement element)
+    {
+        var metaClass = element.getMetaClass();
+        return metaClass?.equals(_Report.TheOne.__StundenPlanReportElement) == true;
     }
 }

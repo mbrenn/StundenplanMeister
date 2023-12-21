@@ -93,4 +93,17 @@ public class StundenPlanPlugin : IDatenMeisterPlugin
         var reportEvaluators = _scopeStorage.Get<HtmlReportEvaluators>();
         reportEvaluators.AddEvaluator(new HtmlStundenPlan());
     }
+    public static DateTime ConvertExcelTimeToDateTime(double excelTime)
+    {
+        // Excel time fraction to a 24-hour day conversion
+        var hoursInDay = excelTime * 24;
+
+        // DateTime's midnight as the reference date
+        var referenceDate = new DateTime(1899, 12, 31);
+
+        // Adding the fraction of the day to the reference date
+        var resultDateTime = referenceDate.AddHours(hoursInDay);
+
+        return resultDateTime;
+    }
 }

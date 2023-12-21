@@ -5,10 +5,14 @@ using BurnSystems.Logging;
 using BurnSystems.Logging.Provider;
 using DatenMeister.Actions;
 using DatenMeister.Core;
+using DatenMeister.Core.EMOF.Interface.Reflection;
+using DatenMeister.Core.Helper;
 using DatenMeister.Core.Models;
 using DatenMeister.Core.Provider.InMemory;
 using DatenMeister.Core.Runtime.Workspaces;
 using DatenMeister.Integration.DotNet;
+using DatenMeister.StundenPlan;
+using DatenMeister.StundenPlan.Model;
 
 Console.WriteLine("Hello, StundenplanMeister!");
 
@@ -20,7 +24,6 @@ var integrationSettings = new IntegrationSettings
 TheLog.AddProvider(new ConsoleProvider());
 
 await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
-
 {
     // First of all, import the excel
     var loadAction = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Actions.__LoadExtentAction);
@@ -52,7 +55,15 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
 
     var extent = dm.WorkspaceLogic.FindExtent(
         WorkspaceNames.WorkspaceData,
-        "dm:///stundenplan");
+        "dm:///stundenplan") ?? throw new InvalidOperationException("Extent was not found");
+
+    // Fix the excel stuff because the timestamp is given as an integer
+    foreach (var element in extent.elements().OfType<IElement>())
+    {
+        element.set(_Types._WeeklyPeriodicEvent.timeStart,
+            StundenPlanPlugin.ConvertExcelTimeToDateTime(
+                element.getOrDefault<double>(_Types._WeeklyPeriodicEvent.timeStart)));
+    }
 
     Console.WriteLine(extent);
     
@@ -92,7 +103,6 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     reportAction.set(_DatenMeister._Actions._Reports._HtmlReportAction.filePath,
         "C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.html");
     reportAction.set(_DatenMeister._Actions._Reports._HtmlReportAction.name, "The Report");
-
 
 
     report.set(_DatenMeister._Reports._ReportInstance.sources, new[] { reportSource });
