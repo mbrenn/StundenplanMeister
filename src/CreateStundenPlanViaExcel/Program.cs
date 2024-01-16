@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Diagnostics;
 using Autofac;
 using BurnSystems.Logging;
 using BurnSystems.Logging.Provider;
@@ -13,6 +14,9 @@ using DatenMeister.Core.Runtime.Workspaces;
 using DatenMeister.Integration.DotNet;
 using DatenMeister.StundenPlan;
 using DatenMeister.StundenPlan.Model;
+
+var pathInput = "C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.xlsx";
+var pathResult = "C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.html";
 
 Console.WriteLine("Hello, StundenplanMeister!");
 
@@ -36,7 +40,7 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     loadAction.set(_DatenMeister._Actions._LoadExtentAction.configuration, configuration);
     configuration.set(
         _DatenMeister._ExtentLoaderConfigs._ExcelLoaderConfig.filePath,
-        "C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.xlsx");
+        pathInput);
 
     configuration.set(
         _DatenMeister._ExtentLoaderConfigs._ExcelLoaderConfig.extentUri,
@@ -101,7 +105,7 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     var reportAction = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Actions.Reports.__HtmlReportAction);
     reportAction.set(_DatenMeister._Actions._Reports._HtmlReportAction.reportInstance, report);
     reportAction.set(_DatenMeister._Actions._Reports._HtmlReportAction.filePath,
-        "C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.html");
+        pathResult);
     reportAction.set(_DatenMeister._Actions._Reports._HtmlReportAction.name, "The Report");
 
 
@@ -110,5 +114,6 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     await actionLogic.ExecuteAction(reportAction);
 }
 
+Process.Start(new ProcessStartInfo( pathResult) { UseShellExecute = true });
 
 Console.WriteLine("And Goodbye!");
