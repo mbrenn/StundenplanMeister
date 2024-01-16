@@ -95,6 +95,7 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     });
 
     report.set(_DatenMeister._Reports._HtmlReportInstance.reportDefinition, reportDefinition);
+    report.set(_DatenMeister._Reports._HtmlReportInstance.cssStyleSheet, "body { background-color: red; }");
 
     var reportSource = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.__ReportInstanceSource);
     reportSource.set(_DatenMeister._Reports._ReportInstanceSource.name, "Meetings");
