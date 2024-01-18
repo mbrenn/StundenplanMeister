@@ -25,6 +25,12 @@ export var _Types;
     _WeeklyScheduleView.skipWeekend = "skipWeekend";
     _Types._WeeklyScheduleView = _WeeklyScheduleView;
     _Types.__WeeklyScheduleView_Uri = "dm:///types/#e722b04b-4392-4695-ada4-168397d7edc0";
+    class _ConflictingSchedule {
+    }
+    _ConflictingSchedule.firstSchedule = "firstSchedule";
+    _ConflictingSchedule.secondSchedule = "secondSchedule";
+    _Types._ConflictingSchedule = _ConflictingSchedule;
+    _Types.__ConflictingSchedule_Uri = "dm:///types/#79050f11-3a68-4783-98ea-481da6b39728";
 })(_Types || (_Types = {}));
 export var _Forms;
 (function (_Forms) {

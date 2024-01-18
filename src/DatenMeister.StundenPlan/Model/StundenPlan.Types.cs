@@ -4,7 +4,7 @@ using DatenMeister.Core.EMOF.Implementation;
 
 // ReSharper disable RedundantNameQualifier
 // Created by DatenMeister.SourcecodeGenerator.ClassTreeGenerator Version 1.2.0.0
-namespace DatenMeister.StundenPlan.Model
+namespace StundenPlan.Model
 {
     public class _Types
     {
@@ -69,6 +69,19 @@ namespace DatenMeister.StundenPlan.Model
 
         public _WeeklyScheduleView @WeeklyScheduleView = new _WeeklyScheduleView();
         public MofObjectShadow @__WeeklyScheduleView = new MofObjectShadow("dm:///types/#e722b04b-4392-4695-ada4-168397d7edc0");
+
+        public class _ConflictingSchedule
+        {
+            public static string @firstSchedule = "firstSchedule";
+            public IElement? @_firstSchedule = null;
+
+            public static string @secondSchedule = "secondSchedule";
+            public IElement? @_secondSchedule = null;
+
+        }
+
+        public _ConflictingSchedule @ConflictingSchedule = new _ConflictingSchedule();
+        public MofObjectShadow @__ConflictingSchedule = new MofObjectShadow("dm:///types/#79050f11-3a68-4783-98ea-481da6b39728");
 
         public static readonly _Types TheOne = new _Types();
 

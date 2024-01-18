@@ -27,6 +27,13 @@ export namespace _Types
         }
 
         export const __WeeklyScheduleView_Uri = "dm:///types/#e722b04b-4392-4695-ada4-168397d7edc0";
+        export class _ConflictingSchedule
+        {
+            static firstSchedule = "firstSchedule";
+            static secondSchedule = "secondSchedule";
+        }
+
+        export const __ConflictingSchedule_Uri = "dm:///types/#79050f11-3a68-4783-98ea-481da6b39728";
 }
 
 export namespace _Forms

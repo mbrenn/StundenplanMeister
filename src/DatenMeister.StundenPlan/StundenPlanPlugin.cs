@@ -20,8 +20,8 @@ public class StundenPlanPlugin : IDatenMeisterPlugin
     
     public const string ViewModeName = "StundenPlan";
 
-    public const string UriStundenPlanForm = "dm:///forms.stundenplan.datenmeister/";
-    public const string UriStundenPlanTypes = "dm:///types.stundenplan.datenmeister/";
+    public const string UriStundenPlanForm = "dm:///forms.stundenplan.datenmeister";
+    public const string UriStundenPlanTypes = "dm:///types.stundenplan.datenmeister";
 
     public StundenPlanPlugin(IWorkspaceLogic workspaceLogic, IScopeStorage scopeStorage)
     {

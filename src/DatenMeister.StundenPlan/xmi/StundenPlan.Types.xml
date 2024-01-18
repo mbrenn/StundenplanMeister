@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <item>
-  <meta p2:id="fdebd604-a4f7-4c4f-8fd4-cdba0ee79bda" p2:type="dm:///_internal/types/internal#DatenMeister.Models.Runtime.ExtentProperties" xmlns:p2="http://www.omg.org/spec/XMI/20131001" xmlns="http://datenmeister.net/" __ExtentType="Uml.Classes " __uri="dm:///edit.stundenmeister.types" />
+  <meta p2:id="fdebd604-a4f7-4c4f-8fd4-cdba0ee79bda" p2:type="dm:///_internal/types/internal#DatenMeister.Models.Runtime.ExtentProperties" xmlns:p2="http://www.omg.org/spec/XMI/20131001" xmlns="http://datenmeister.net/" __ExtentType="Uml.Classes " __uri="dm:///types.stundenplan.datenmeister" />
   <item p1:type="dm:///_internal/model/uml#Package" p1:id="_package_StundenPlan" xmlns:p1="http://www.omg.org/spec/XMI/20131001" name="Types">
     <packagedElement p2:type="dm:///_internal/model/uml#Class" p2:id="954ad359-1a92-4661-bc58-83ea4517d493" name="WeeklyPeriodicEvent" xmlns:p2="http://www.omg.org/spec/XMI/20131001">
       <isAbstract p2:id="e24cf76e-1d25-49bb-be9e-4cafc8ce7b6f" />
@@ -180,6 +180,32 @@
         <isUnique p1:id="1bc8a71a-829c-4116-95c8-8aa7ce4cca88" />
         <isStatic p1:id="df309728-a121-4d08-916e-0e29d1aed54f" />
         <isLeaf p1:id="16a023bd-8c19-43c7-8bf3-c9f2a789fff9" />
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement p1:type="dm:///_internal/model/uml#Class" p1:id="79050f11-3a68-4783-98ea-481da6b39728" name="ConflictingSchedule">
+      <isAbstract p1:id="39684cfd-5038-4a8a-8914-1ba12f010cd2" />
+      <isActive p1:id="42538d7c-a20e-4417-94a5-4434c2a01afd" />
+      <isFinalSpecialization p1:id="c3e926b1-83f4-41f6-af11-05b623ef2d5a" />
+      <isLeaf p1:id="c3f7eb95-4660-43d0-b188-935fc776ee94" />
+      <ownedAttribute p1:type="dm:///_internal/model/uml#Property" p1:id="d0c526a0-0b45-4194-b8ee-907c6ae402d8" name="firstSchedule" type-ref="dm:///types.stundenplan.datenmeister#954ad359-1a92-4661-bc58-83ea4517d493" isID="false" isComposite="false">
+        <aggregation href="dm:///_internal/model/uml#Property-aggregation-_defaultValue" />
+        <isDerived href="dm:///_internal/model/uml#Property-isDerived-_defaultValue" />
+        <isDerivedUnion href="dm:///_internal/model/uml#Property-isDerivedUnion-_defaultValue" />
+        <isReadOnly href="dm:///_internal/model/uml#StructuralFeature-isReadOnly-_defaultValue" />
+        <isOrdered href="dm:///_internal/model/uml#MultiplicityElement-isOrdered-_defaultValue" />
+        <isUnique href="dm:///_internal/model/uml#MultiplicityElement-isUnique-_defaultValue" />
+        <isStatic href="dm:///_internal/model/uml#Feature-isStatic-_defaultValue" />
+        <isLeaf href="dm:///_internal/model/uml#RedefinableElement-isLeaf-_defaultValue" />
+      </ownedAttribute>
+      <ownedAttribute p1:type="dm:///_internal/model/uml#Property" p1:id="32eb5617-ad42-4f69-a6d0-535378991f89" name="secondSchedule" type-ref="dm:///types.stundenplan.datenmeister#954ad359-1a92-4661-bc58-83ea4517d493" isID="false" isComposite="false">
+        <aggregation p1:id="0d9fb2cb-2e69-4243-851e-fb8d60da2d89" />
+        <isDerived p1:id="7324d639-fdb0-4ed0-b5b7-6564cb29a461" />
+        <isDerivedUnion p1:id="3d93605f-66cd-4afc-bc54-2c5963dbf58a" />
+        <isReadOnly p1:id="29990de6-be3f-494c-9e3d-aa1454f08bc8" />
+        <isOrdered p1:id="a4be80d5-5114-46d9-8909-5a8f943b7f95" />
+        <isUnique p1:id="e86d2a10-807b-465f-ab5b-ee0f84362fce" />
+        <isStatic p1:id="5d488c8d-2f52-416f-8baa-3bc2ae883b99" />
+        <isLeaf p1:id="0cadc099-19b3-49c8-9f36-228c28df641e" />
       </ownedAttribute>
     </packagedElement>
   </item>

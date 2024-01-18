@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <item>
-  <meta p2:id="3ff5a043-3cdc-4fc8-8733-b77f618754cc" p2:type="dm:///_internal/types/internal#DatenMeister.Models.Runtime.ExtentProperties" xmlns:p2="http://www.omg.org/spec/XMI/20131001" xmlns="http://datenmeister.net/" __ExtentType="DatenMeister.Forms " __uri="dm:///edit.stundenmeister.forms" />
+  <meta p2:id="3ff5a043-3cdc-4fc8-8733-b77f618754cc" p2:type="dm:///_internal/types/internal#DatenMeister.Models.Runtime.ExtentProperties" xmlns:p2="http://www.omg.org/spec/XMI/20131001" xmlns="http://datenmeister.net/" __ExtentType="DatenMeister.Forms " __uri="dm:///forms.stundenplan.datenmeister" />
   <item p1:type="dm:///_internal/types/internal#DatenMeister.Models.DefaultTypes.Package" name="StundenMeister" xmlns:p1="http://www.omg.org/spec/XMI/20131001" p1:id="78a82075-ec3f-4a9d-a739-2c139b9a9557">
     <!-- Declares the view mode -->
     <packagedElement p1:type="dm:///_internal/types/internal#DatenMeister.Models.Forms.ViewModes.ViewMode" name="StundenPlan" id="StundenPlan" defaultExtentType="StundenPlan" p1:id="8ae94020-a5dc-49e4-a174-bbdd7cc1424e" />
