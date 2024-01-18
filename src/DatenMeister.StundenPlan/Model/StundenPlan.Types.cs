@@ -4,7 +4,7 @@ using DatenMeister.Core.EMOF.Implementation;
 
 // ReSharper disable RedundantNameQualifier
 // Created by DatenMeister.SourcecodeGenerator.ClassTreeGenerator Version 1.2.0.0
-namespace StundenPlan.Model
+namespace DatenMeister.StundenPlan.Model
 {
     public class _Types
     {
