@@ -8,6 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="resources\style.css" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="resources\style.css" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Reference Include="Autofac">
         <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\Autofac.dll</HintPath>
       </Reference>

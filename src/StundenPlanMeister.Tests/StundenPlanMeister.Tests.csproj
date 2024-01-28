@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DatenMeister.StundenPlan\DatenMeister.StundenPlan.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\deps\datenmeister\assemblies\Debug\net6.0\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="BurnSystems">
+      <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\BurnSystems.dll</HintPath>
+    </Reference>
+    <Reference Include="DatenMeister.Core">
+      <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DatenMeister.DependencyInjection">
+      <HintPath>..\..\deps\datenmeister\assemblies\Debug\net6.0\DatenMeister.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="DatenMeister.Extent.Manager">
+      <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Extent.Manager.dll</HintPath>
+    </Reference>
+    <Reference Include="DatenMeister.Integration.DotNet">
+      <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Integration.DotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DatenMeister.Plugins">
+      <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="DatenMeister.Reports">
+      <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Reports.dll</HintPath>
+    </Reference>
+    <Reference Include="DatenMeister.WebServer.Library">
+      <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.WebServer.Library.dll</HintPath>
+    </Reference>
+    <Reference Include="DatenMeister.HtmlEngine">
+      <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.HtmlEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="DatenMeister.DataView">
+      <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.DataView.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

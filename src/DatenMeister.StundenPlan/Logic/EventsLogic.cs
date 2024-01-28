@@ -63,5 +63,14 @@ namespace DatenMeister.StundenPlan.Logic
             }).OrderBy(
                 x=> x.getOrDefault<DateTime>(_WeeklyPeriodicEvent.timeStart));
         }
+
+        public static IEnumerable<IElement> GetConflicts(IEnumerable<IElement> allElements)
+        {
+            var result = new List<IElement>();
+
+            // First, store the list, we make a triangle approach by comparing all elements to be compared by later elements
+
+            return result;
+        }
     }
 }

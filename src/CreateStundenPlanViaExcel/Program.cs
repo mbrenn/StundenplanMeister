@@ -2,8 +2,10 @@
 
 using System.Diagnostics;
 using Autofac;
+using BurnSystems;
 using BurnSystems.Logging;
 using BurnSystems.Logging.Provider;
+using CreateStundenPlanViaExcel;
 using DatenMeister.Actions;
 using DatenMeister.Core;
 using DatenMeister.Core.EMOF.Interface.Reflection;
@@ -95,7 +97,9 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     });
 
     report.set(_DatenMeister._Reports._HtmlReportInstance.reportDefinition, reportDefinition);
-    report.set(_DatenMeister._Reports._HtmlReportInstance.cssStyleSheet, "body { background-color: red; }");
+    var cssStyle = 
+        ResourceHelper.LoadStringFromAssembly(typeof(DummyClass), "CreateStundenPlanViaExcel.resources.style.css");
+    report.set(_DatenMeister._Reports._HtmlReportInstance.cssStyleSheet, cssStyle);
 
     var reportSource = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.__ReportInstanceSource);
     reportSource.set(_DatenMeister._Reports._ReportInstanceSource.name, "Meetings");
