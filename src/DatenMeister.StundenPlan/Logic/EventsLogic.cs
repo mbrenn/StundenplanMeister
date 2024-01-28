@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DatenMeister.Core.EMOF.Interface.Reflection;
+﻿using DatenMeister.Core.EMOF.Interface.Reflection;
 using DatenMeister.Core.Helper;
-using DatenMeister.Core.Models.EMOF;
 using DatenMeister.StundenPlan.Model;
 using static DatenMeister.StundenPlan.Model._Types;
 
 namespace DatenMeister.StundenPlan.Logic
 {
-    internal static class EventsLogic
+    public static class EventsLogic
     {
         /// <summary>
         /// Checks whether the event is on a certain weekday active
