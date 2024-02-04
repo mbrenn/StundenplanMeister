@@ -1,18 +1,12 @@
-﻿using BurnSystems.Logging.Provider;
-using BurnSystems.Logging;
+﻿using BurnSystems.Logging;
+using BurnSystems.Logging.Provider;
 using DatenMeister.Core;
-using DatenMeister.Integration.DotNet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DatenMeister.Core.EMOF.Interface.Reflection;
-using DatenMeister.Core.EMOF.Implementation;
-using DatenMeister.Core.Provider.InMemory;
-using DatenMeister.StundenPlan.Model;
-using DatenMeister.StundenPlan.Logic;
 using DatenMeister.Core.Helper;
+using DatenMeister.Core.Provider.InMemory;
+using DatenMeister.Integration.DotNet;
+using DatenMeister.StundenPlan.Logic;
+using DatenMeister.StundenPlan.Model;
 
 namespace StundenPlanMeister.Tests
 {
@@ -45,7 +39,7 @@ namespace StundenPlanMeister.Tests
             event2.set(_Types._WeeklyPeriodicEvent.weekOffset, 0);
             event2.set(_Types._WeeklyPeriodicEvent.weekInterval, 1);
             event2.set(_Types._WeeklyPeriodicEvent.onMonday, true);
-            event1.set(_Types._WeeklyPeriodicEvent.timeStart, 9);
+            event2.set(_Types._WeeklyPeriodicEvent.timeStart, 9);
             event2.set(_Types._WeeklyPeriodicEvent.hoursDuration, 2);
             event2.set(_Types._WeeklyPeriodicEvent.name, "Event 2");
 
@@ -61,7 +55,7 @@ namespace StundenPlanMeister.Tests
             Assert.That(events.Count, Is.EqualTo(1));
             var firstConflict = events[0];
             var firstSchedule = firstConflict.getOrDefault<IObject>(_Types._ConflictingSchedule.firstSchedule);
-            var secondSchedule = firstConflict.getOrDefault<IObject>(_Types._ConflictingSchedule.firstSchedule);
+            var secondSchedule = firstConflict.getOrDefault<IObject>(_Types._ConflictingSchedule.secondSchedule);
 
             Assert.That(firstSchedule, Is.Not.Null);
             Assert.That(secondSchedule, Is.Not.Null);
@@ -110,10 +104,10 @@ namespace StundenPlanMeister.Tests
 
             var events = EventsLogic.GetConflicts(new[] { event1, event2, event3 }).ToList();
 
-            Assert.That(events.Count, Is.EqualTo(1));
+            Assert.That(events.Count, Is.EqualTo(2));
             var firstConflict = events[0];
             var firstSchedule = firstConflict.getOrDefault<IObject>(_Types._ConflictingSchedule.firstSchedule);
-            var secondSchedule = firstConflict.getOrDefault<IObject>(_Types._ConflictingSchedule.firstSchedule);
+            var secondSchedule = firstConflict.getOrDefault<IObject>(_Types._ConflictingSchedule.secondSchedule);
 
             Assert.That(firstSchedule, Is.Not.Null);
             Assert.That(secondSchedule, Is.Not.Null);
@@ -165,7 +159,7 @@ namespace StundenPlanMeister.Tests
             Assert.That(events.Count, Is.EqualTo(1));
             var firstConflict = events[0];
             var firstSchedule = firstConflict.getOrDefault<IObject>(_Types._ConflictingSchedule.firstSchedule);
-            var secondSchedule = firstConflict.getOrDefault<IObject>(_Types._ConflictingSchedule.firstSchedule);
+            var secondSchedule = firstConflict.getOrDefault<IObject>(_Types._ConflictingSchedule.secondSchedule);
 
             Assert.That(firstSchedule, Is.Not.Null);
             Assert.That(secondSchedule, Is.Not.Null);

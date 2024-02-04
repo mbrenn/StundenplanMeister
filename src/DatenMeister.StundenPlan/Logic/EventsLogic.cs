@@ -1,6 +1,8 @@
 ﻿using DatenMeister.Core.EMOF.Interface.Reflection;
 using DatenMeister.Core.Helper;
+using DatenMeister.Core.Provider.InMemory;
 using DatenMeister.StundenPlan.Model;
+using System.Reflection.Metadata.Ecma335;
 using static DatenMeister.StundenPlan.Model._Types;
 
 namespace DatenMeister.StundenPlan.Logic
@@ -54,16 +56,111 @@ namespace DatenMeister.StundenPlan.Logic
 
                 return false;
             }).OrderBy(
-                x=> x.getOrDefault<DateTime>(_WeeklyPeriodicEvent.timeStart));
+                x => x.getOrDefault<DateTime>(_WeeklyPeriodicEvent.timeStart));
         }
 
         public static IEnumerable<IElement> GetConflicts(IEnumerable<IElement> allElements)
         {
+            var allElementsAsAList = allElements.ToList();
             var result = new List<IElement>();
 
             // First, store the list, we make a triangle approach by comparing all elements to be compared by later elements
+            for (var n = 0; n < allElementsAsAList.Count() - 1; n++)
+            {
+                for (var m = n + 1; m < allElementsAsAList.Count(); m++)
+                {
+                    var first = allElementsAsAList[n];
+                    var second = allElementsAsAList[m];
+
+                    if (IsConflicting(first, second))
+                    {
+                        var conflict = InMemoryObject.CreateEmpty(
+                            _Types.TheOne.__ConflictingSchedule);
+                        conflict.set(_ConflictingSchedule.firstSchedule, first);
+                        conflict.set(_ConflictingSchedule.secondSchedule, second);
+                        result.Add(conflict);
+                    }
+                }
+            }
 
             return result;
+        }
+
+        /// <summary>
+        /// Gets or sets whether two events are conflicting to each other
+        /// </summary>
+        /// <param name="first">First element</param>
+        /// <param name="second">Second Element</param>
+        /// <returns>true, if conflicting</returns>
+        private static bool IsConflicting(IElement first, IElement second)
+        {
+            // An event is not conflicting, if there
+            // - are no conflicting days
+            // - are no overlapping times OR
+            // - in case the intervals have a common divisor, the interval offset are not the same
+            var firstStart = first.getOrDefault<double>(_Types._WeeklyPeriodicEvent.timeStart);
+            var firstDuration = first.getOrDefault<double>(_Types._WeeklyPeriodicEvent.hoursDuration);
+            var firstInterval = first.getOrDefault<int>(_Types._WeeklyPeriodicEvent.weekInterval);
+            var firstOffset = first.getOrDefault<int>(_Types._WeeklyPeriodicEvent.weekOffset);
+            var firstEnd = firstStart + firstDuration;
+
+            var secondStart = second.getOrDefault<double>(_Types._WeeklyPeriodicEvent.timeStart);
+            var secondDuration = second.getOrDefault<double>(_Types._WeeklyPeriodicEvent.hoursDuration);
+            var secondInterval = second.getOrDefault<int>(_Types._WeeklyPeriodicEvent.weekInterval);
+            var secondOffset = second.getOrDefault<int>(_Types._WeeklyPeriodicEvent.weekOffset);
+            var secondEnd = secondStart + secondDuration;
+
+            // There are no conflicting days
+            if (!(
+                first.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onMonday) && second.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onMonday)
+                ||
+                first.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onTuesday) && second.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onTuesday)
+                ||
+                first.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onWednesday) && second.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onWednesday)
+                ||
+                first.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onThursday) && second.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onThursday)
+                ||
+                first.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onFriday) && second.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onFriday)
+                ||
+                first.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onSaturday) && second.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onSaturday)
+                ||
+                first.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onSunday) && second.getOrDefault<bool>(_Types._WeeklyPeriodicEvent.onSunday)
+                ))
+            {
+                return false;
+            }
+
+            // There are no conflicting time slots
+            if (firstStart >= secondEnd || secondStart >= firstEnd)
+            {
+                return false;
+            }
+
+            // Check, that the intervals have a common divider
+            var low = Math.Min(firstInterval, secondInterval);
+            var high = Math.Max(firstInterval, secondInterval);
+            
+            var residual = high % low;
+            if (residual == 0 && low != 0)
+            {
+                // Ok, we do have a common divider, now let's figure out whether the intervals are conflicting
+                // First, normalize the offsets that they are not carrying the intervals
+                var firstCorrectedOffset = firstOffset % firstInterval;
+                var secondCorrectedOffset = secondOffset % secondInterval;
+
+                // Second, normalize them on the smaller interval
+                firstCorrectedOffset = firstCorrectedOffset % low;
+                secondCorrectedOffset = secondCorrectedOffset % low;
+
+                // Now check, that both are different, that means they are in alternative weeks
+                if ( firstCorrectedOffset != secondCorrectedOffset)
+                {
+                    return false;
+                }
+            }
+            
+            // We have a matching time, matching time interval and matching days. It must be a conflict
+            return true;
         }
     }
 }
