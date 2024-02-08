@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "CreateStundenPlanViaExcel": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.xlsx\" \"C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.html\"",
+      "remoteDebugEnabled": false
+    }
+  }
+}

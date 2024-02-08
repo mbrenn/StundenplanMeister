@@ -5,6 +5,7 @@ using Autofac;
 using BurnSystems;
 using BurnSystems.Logging;
 using BurnSystems.Logging.Provider;
+using CommandLine;
 using CreateStundenPlanViaExcel;
 using DatenMeister.Actions;
 using DatenMeister.Core;
@@ -19,8 +20,12 @@ using DatenMeister.StundenPlan;
 using DatenMeister.StundenPlan.Logic;
 using DatenMeister.StundenPlan.Model;
 
-var pathInput = "C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.xlsx";
-var pathResult = "C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.html";
+
+var value = Parser.Default.ParseArguments<Options>(args);
+
+var options = value.Value;
+var pathInput = options.InputExcel;
+var pathResult = options.OutputHtml;
 
 Console.WriteLine("Hello, StundenplanMeister!");
 
@@ -33,7 +38,6 @@ TheLog.AddProvider(new ConsoleProvider());
 
 await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
 {
-
     Console.WriteLine("Loading the excel");
 
     // First of all, import the excel
