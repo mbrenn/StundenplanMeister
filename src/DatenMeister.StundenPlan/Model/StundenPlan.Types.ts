@@ -62,5 +62,11 @@ export namespace _Report
         }
 
         export const __StundenPlanReportElement_Uri = "dm:///types/#fefebd7f-03b5-49c9-9118-491c33f87956";
+        export class _HtmlConflictReport
+        {
+            static viewNode = "viewNode";
+        }
+
+        export const __HtmlConflictReport_Uri = "dm:///types/#fef1fd2f-03b5-49c9-9118-491c33f87956";
 }
 

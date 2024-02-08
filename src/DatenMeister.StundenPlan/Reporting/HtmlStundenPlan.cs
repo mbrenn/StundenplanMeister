@@ -1,4 +1,5 @@
 ﻿using DatenMeister.Core.EMOF.Interface.Reflection;
+using DatenMeister.Core.Functions.Queries;
 using DatenMeister.Core.Helper;
 using DatenMeister.HtmlEngine;
 using DatenMeister.Reports;
@@ -23,7 +24,8 @@ public class HtmlStundenPlan : IGenericReportEvaluator<HtmlReportCreator>
                 _Report._StundenPlanReportElement.viewNode);
 
         var dataviewEvaluation = reportLogic.GetDataViewEvaluation();
-        var elements = dataviewEvaluation.GetElementsForViewNode(viewNode).OfType<IElement>().ToList(); 
+        var elements = dataviewEvaluation.GetElementsForViewNode(viewNode).
+            WhenMetaClassIs(_Types.TheOne.__WeeklyPeriodicEvent).OfType<IElement>().ToList(); 
 
         // Ok, now we create the table
         var table = new HtmlTable();

@@ -1,4 +1,6 @@
-﻿using DatenMeister.Core.EMOF.Interface.Reflection;
+﻿using DatenMeister.Core.EMOF.Implementation;
+using DatenMeister.Core.EMOF.Interface.Common;
+using DatenMeister.Core.EMOF.Interface.Reflection;
 using DatenMeister.Core.Helper;
 using DatenMeister.Core.Provider.InMemory;
 using DatenMeister.StundenPlan.Model;
@@ -59,9 +61,30 @@ namespace DatenMeister.StundenPlan.Logic
                 x => x.getOrDefault<DateTime>(_WeeklyPeriodicEvent.timeStart));
         }
 
-        public static IEnumerable<IElement> GetConflicts(IEnumerable<IElement> allElements)
+        /// <summary>
+        ///  Add all conflicts to the intended target collection
+        /// </summary>
+        /// <param name="targetCollection">Creates the Target collection</param>
+        /// <param name="allElements">All Events to be parsed</param>
+        public static void AddConflicts(IReflectiveCollection targetCollection, IReflectiveCollection allElements)
         {
-            var allElementsAsAList = allElements.ToList();
+            var factory = new MofFactory(targetCollection);
+
+            foreach (var conflict in GetConflicts(allElements, factory))
+            {
+                targetCollection.add(conflict);
+            }
+        }
+
+        /// <summary>
+        /// Gets an enumeration of all conflicts out of the events within the all elements
+        /// </summary>
+        /// <param name="allElements">Events to be parsed</param>
+        /// <param name="factory">Opotional factory to be used, can be null, in case the elements shall just be created temporarily</param>
+        /// <returns>Enumeration of elements</returns>
+        public static IEnumerable<IElement> GetConflicts(IReflectiveCollection allElements, IFactory? factory = null)
+        {
+            var allElementsAsAList = allElements.OfType<IElement>().ToList();
             var result = new List<IElement>();
 
             // First, store the list, we make a triangle approach by comparing all elements to be compared by later elements
@@ -74,8 +97,10 @@ namespace DatenMeister.StundenPlan.Logic
 
                     if (IsConflicting(first, second))
                     {
-                        var conflict = InMemoryObject.CreateEmpty(
-                            _Types.TheOne.__ConflictingSchedule);
+                        var conflict =
+                            factory != null
+                            ? factory.create(_Types.TheOne.__ConflictingSchedule)
+                            : InMemoryObject.CreateEmpty(_Types.TheOne.__ConflictingSchedule);
                         conflict.set(_ConflictingSchedule.firstSchedule, first);
                         conflict.set(_ConflictingSchedule.secondSchedule, second);
                         result.Add(conflict);
@@ -98,17 +123,17 @@ namespace DatenMeister.StundenPlan.Logic
             // - are no conflicting days
             // - are no overlapping times OR
             // - in case the intervals have a common divisor, the interval offset are not the same
-            var firstStart = first.getOrDefault<double>(_Types._WeeklyPeriodicEvent.timeStart);
+            var firstStart = first.getOrDefault<DateTime>(_Types._WeeklyPeriodicEvent.timeStart);
             var firstDuration = first.getOrDefault<double>(_Types._WeeklyPeriodicEvent.hoursDuration);
             var firstInterval = first.getOrDefault<int>(_Types._WeeklyPeriodicEvent.weekInterval);
             var firstOffset = first.getOrDefault<int>(_Types._WeeklyPeriodicEvent.weekOffset);
-            var firstEnd = firstStart + firstDuration;
+            var firstEnd = firstStart + TimeSpan.FromHours(firstDuration);
 
-            var secondStart = second.getOrDefault<double>(_Types._WeeklyPeriodicEvent.timeStart);
+            var secondStart = second.getOrDefault<DateTime>(_Types._WeeklyPeriodicEvent.timeStart);
             var secondDuration = second.getOrDefault<double>(_Types._WeeklyPeriodicEvent.hoursDuration);
             var secondInterval = second.getOrDefault<int>(_Types._WeeklyPeriodicEvent.weekInterval);
             var secondOffset = second.getOrDefault<int>(_Types._WeeklyPeriodicEvent.weekOffset);
-            var secondEnd = secondStart + secondDuration;
+            var secondEnd = secondStart + TimeSpan.FromHours(secondDuration);
 
             // There are no conflicting days
             if (!(

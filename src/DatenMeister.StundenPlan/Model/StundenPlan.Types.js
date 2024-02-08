@@ -55,5 +55,10 @@ export var _Report;
     _StundenPlanReportElement.skipWeekend = "skipWeekend";
     _Report._StundenPlanReportElement = _StundenPlanReportElement;
     _Report.__StundenPlanReportElement_Uri = "dm:///types/#fefebd7f-03b5-49c9-9118-491c33f87956";
+    class _HtmlConflictReport {
+    }
+    _HtmlConflictReport.viewNode = "viewNode";
+    _Report._HtmlConflictReport = _HtmlConflictReport;
+    _Report.__HtmlConflictReport_Uri = "dm:///types/#fef1fd2f-03b5-49c9-9118-491c33f87956";
 })(_Report || (_Report = {}));
 //# sourceMappingURL=StundenPlan.Types.js.map

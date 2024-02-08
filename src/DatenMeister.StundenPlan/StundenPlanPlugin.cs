@@ -92,6 +92,7 @@ public class StundenPlanPlugin : IDatenMeisterPlugin
     {
         var reportEvaluators = _scopeStorage.Get<HtmlReportEvaluators>();
         reportEvaluators.AddEvaluator(new HtmlStundenPlan());
+        reportEvaluators.AddEvaluator(new HtmlConflictReport());
     }
     public static DateTime ConvertExcelTimeToDateTime(double excelTime)
     {

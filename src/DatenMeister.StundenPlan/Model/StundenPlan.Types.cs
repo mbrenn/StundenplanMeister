@@ -139,6 +139,16 @@ namespace DatenMeister.StundenPlan.Model
         public _StundenPlanReportElement @StundenPlanReportElement = new _StundenPlanReportElement();
         public MofObjectShadow @__StundenPlanReportElement = new MofObjectShadow("dm:///types/#fefebd7f-03b5-49c9-9118-491c33f87956");
 
+        public class _HtmlConflictReport
+        {
+            public static string @viewNode = "viewNode";
+            public IElement? @_viewNode = null;
+
+        }
+
+        public _HtmlConflictReport @HtmlConflictReport = new _HtmlConflictReport();
+        public MofObjectShadow @__HtmlConflictReport = new MofObjectShadow("dm:///types/#fef1fd2f-03b5-49c9-9118-491c33f87956");
+
         public static readonly _Report TheOne = new _Report();
 
     }

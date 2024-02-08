@@ -8,6 +8,7 @@ using BurnSystems.Logging.Provider;
 using CreateStundenPlanViaExcel;
 using DatenMeister.Actions;
 using DatenMeister.Core;
+using DatenMeister.Core.EMOF.Implementation;
 using DatenMeister.Core.EMOF.Interface.Reflection;
 using DatenMeister.Core.Helper;
 using DatenMeister.Core.Models;
@@ -15,6 +16,7 @@ using DatenMeister.Core.Provider.InMemory;
 using DatenMeister.Core.Runtime.Workspaces;
 using DatenMeister.Integration.DotNet;
 using DatenMeister.StundenPlan;
+using DatenMeister.StundenPlan.Logic;
 using DatenMeister.StundenPlan.Model;
 
 var pathInput = "C:\\Users\\mbren\\OneDrive\\Dokumente\\Meetings.xlsx";
@@ -31,6 +33,9 @@ TheLog.AddProvider(new ConsoleProvider());
 
 await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
 {
+
+    Console.WriteLine("Loading the excel");
+
     // First of all, import the excel
     var loadAction = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Actions.__LoadExtentAction);
 
@@ -66,10 +71,18 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     // Fix the excel stuff because the timestamp is given as an integer
     foreach (var element in extent.elements().OfType<IElement>())
     {
+        // Sets the metaclass
+        (element as MofElement)?.SetMetaClass(_Types.TheOne.__WeeklyPeriodicEvent);
+
         element.set(_Types._WeeklyPeriodicEvent.timeStart,
             StundenPlanPlugin.ConvertExcelTimeToDateTime(
                 element.getOrDefault<double>(_Types._WeeklyPeriodicEvent.timeStart)));
     }
+
+    Console.WriteLine("Identifying Conflicts");
+    EventsLogic.AddConflicts(extent.elements(), extent.elements());
+
+    Console.WriteLine("Now create the report");
 
     Console.WriteLine(extent);
     
@@ -89,11 +102,19 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     stundenPlanReportElement.set(DatenMeister.StundenPlan.Model._Report._StundenPlanReportElement.skipWeekend, false);
     stundenPlanReportElement.set(DatenMeister.StundenPlan.Model._Report._StundenPlanReportElement.weeks, 4);
 
+    var reportHeaderConflicts = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.Elements.__ReportHeadline);
+    reportHeaderConflicts.set(_DatenMeister._Reports._Elements._ReportHeadline.title, "Conflicts");
+
+    var conflictReport = InMemoryObject.CreateEmpty(DatenMeister.StundenPlan.Model._Report.TheOne.__HtmlConflictReport);
+    conflictReport.set(DatenMeister.StundenPlan.Model._Report._HtmlConflictReport.viewNode, dynamicViewNode);
+
     var reportDefinition = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.__ReportDefinition);
     reportDefinition.set(_DatenMeister._Reports._ReportDefinition.elements, new[]
     {
         reportHeader,
-        stundenPlanReportElement
+        stundenPlanReportElement,
+        reportHeaderConflicts,
+        conflictReport
     });
 
     report.set(_DatenMeister._Reports._HtmlReportInstance.reportDefinition, reportDefinition);
@@ -112,7 +133,6 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     reportAction.set(_DatenMeister._Actions._Reports._HtmlReportAction.filePath,
         pathResult);
     reportAction.set(_DatenMeister._Actions._Reports._HtmlReportAction.name, "The Report");
-
 
     report.set(_DatenMeister._Reports._ReportInstance.sources, new[] { reportSource });
 

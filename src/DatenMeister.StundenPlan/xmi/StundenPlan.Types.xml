@@ -227,8 +227,11 @@
       <isFinalSpecialization p2:id="574dd420-e129-4474-8967-f3b392ab199d" />
       <isLeaf p2:id="a31ce489-0a01-4c93-a27c-8b4d98aa8b8c" />
       <ownedAttribute p2:type="dm:///_internal/model/uml#Property" p2:id="32f4d8a2-1ed3-4182-8855-91f5af67c0ac" name="viewNode" type-ref="dm:///_internal/types/internal#DatenMeister.Models.DataViews.ViewNode"></ownedAttribute>
-      <ownedAttribute p2:type="dm:///_internal/model/uml#Property" p2:id="f8925866-698c-4660-a9c6-0a5cd364ee71" type-ref="dm:///_internal/model/primitivetypes#UnlimitedNatural" name="weeks" isID="true" isComposite="true"></ownedAttribute>
+      <ownedAttribute p2:type="dm:///_internal/model/uml#Property" p2:id="f8925866-698c-4660-a9c6-0a5cd364ee71" type-ref="dm:///_internal/model/primitivetypes#UnlimitedNatural" name="weeks"></ownedAttribute>
       <ownedAttribute p2:type="dm:///_internal/model/uml#Property" p2:id="b1562126-f53e-4405-9566-c8b92e6bf42f" name="skipWeekend" type-ref="dm:///_internal/model/primitivetypes#Boolean"></ownedAttribute>
+    </packagedElement>
+    <packagedElement p2:type="dm:///_internal/model/uml#Class" p2:id="fef1fd2f-03b5-49c9-9118-491c33f87956" name="HtmlConflictReport">
+      <ownedAttribute p2:type="dm:///_internal/model/uml#Property" p2:id="12f4d8a2-1ed3-4182-8855-9545af67c0ac" name="viewNode" type-ref="dm:///_internal/types/internal#DatenMeister.Models.DataViews.ViewNode"></ownedAttribute>
     </packagedElement>
   </item>
 </item>
