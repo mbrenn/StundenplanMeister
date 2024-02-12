@@ -86,10 +86,13 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     Console.WriteLine("Identifying Conflicts");
     EventsLogic.AddConflicts(extent.elements(), extent.elements());
 
+    Console.WriteLine("Calculate hours");
+    var totalHours = EventsLogic.CalculateEventHoursPerWeek(extent.elements());
+
     Console.WriteLine("Now create the report");
 
     Console.WriteLine(extent);
-    
+
     // Now create the report
     var report = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.__HtmlReportInstance);
     report.set(_DatenMeister._Reports._HtmlReportInstance.name, "The Report");
@@ -106,11 +109,19 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     stundenPlanReportElement.set(DatenMeister.StundenPlan.Model._Report._StundenPlanReportElement.skipWeekend, false);
     stundenPlanReportElement.set(DatenMeister.StundenPlan.Model._Report._StundenPlanReportElement.weeks, 4);
 
+    // Writes the conflicts
     var reportHeaderConflicts = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.Elements.__ReportHeadline);
     reportHeaderConflicts.set(_DatenMeister._Reports._Elements._ReportHeadline.title, "Conflicts");
 
     var conflictReport = InMemoryObject.CreateEmpty(DatenMeister.StundenPlan.Model._Report.TheOne.__HtmlConflictReport);
     conflictReport.set(DatenMeister.StundenPlan.Model._Report._HtmlConflictReport.viewNode, dynamicViewNode);
+
+    // Writes the statistics
+    var hoursTitle = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.Elements.__ReportHeadline);
+    hoursTitle.set(_DatenMeister._Reports._Elements._ReportHeadline.title, "Statistics");
+
+    var hoursParagraph = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.Elements.__ReportParagraph);
+    hoursParagraph.set(_DatenMeister._Reports._Elements._ReportParagraph.paragraph, $"Meeting hours per week: {totalHours:n2}");
 
     var reportDefinition = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.__ReportDefinition);
     reportDefinition.set(_DatenMeister._Reports._ReportDefinition.elements, new[]
@@ -118,11 +129,13 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
         reportHeader,
         stundenPlanReportElement,
         reportHeaderConflicts,
-        conflictReport
+        conflictReport,
+        hoursTitle,
+        hoursParagraph
     });
 
     report.set(_DatenMeister._Reports._HtmlReportInstance.reportDefinition, reportDefinition);
-    var cssStyle = 
+    var cssStyle =
         ResourceHelper.LoadStringFromAssembly(typeof(DummyClass), "CreateStundenPlanViaExcel.resources.style.css");
     report.set(_DatenMeister._Reports._HtmlReportInstance.cssStyleSheet, cssStyle);
 

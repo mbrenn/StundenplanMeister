@@ -46,25 +46,25 @@
 
     <ItemGroup>
       <Reference Include="DatenMeister.Core">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Core.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Core.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Extent.Manager">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Extent.Manager.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Extent.Manager.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Plugins">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Plugins.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Plugins.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Reports">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Reports.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Reports.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.WebServer.Library">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.WebServer.Library.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.WebServer.Library.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.HtmlEngine">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.HtmlEngine.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.HtmlEngine.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.DataView">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.DataView.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.DataView.dll</HintPath>
       </Reference>
     </ItemGroup>
 

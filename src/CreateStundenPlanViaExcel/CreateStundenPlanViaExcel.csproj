@@ -21,100 +21,100 @@
 
     <ItemGroup>
       <Reference Include="Autofac">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\Autofac.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\Autofac.dll</HintPath>
       </Reference>
       <Reference Include="BouncyCastle.Crypto">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\BouncyCastle.Crypto.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\BouncyCastle.Crypto.dll</HintPath>
       </Reference>
       <Reference Include="BurnSystems">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\BurnSystems.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\BurnSystems.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Actions">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Actions.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Actions.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.BootStrap">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.BootStrap.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.BootStrap.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Core">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Core.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Core.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Core.Extensions">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Core.Extensions.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Core.Extensions.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.DataView">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.DataView.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.DataView.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.DependencyInjection">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.DependencyInjection.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.DependencyInjection.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Excel">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Excel.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Excel.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Extent.Forms">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Extent.Forms.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Extent.Forms.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Extent.Manager">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Extent.Manager.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Extent.Manager.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Extent.Verifier">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Extent.Verifier.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Extent.Verifier.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.FastViewFilter">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.FastViewFilter.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.FastViewFilter.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Forms">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Forms.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Forms.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Html">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Html.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Html.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.HtmlEngine">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.HtmlEngine.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.HtmlEngine.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Integration.DotNet">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Integration.DotNet.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Integration.DotNet.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Json">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Json.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Json.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Locking">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Locking.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Locking.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Plugins">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Plugins.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Plugins.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Provider.CSV">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Provider.CSV.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Provider.CSV.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Provider.DynamicRuntime">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Provider.DynamicRuntime.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Provider.DynamicRuntime.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Provider.Environmental">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Provider.Environmental.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Provider.Environmental.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Provider.ExtentManagement">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Provider.ExtentManagement.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Provider.ExtentManagement.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Provider.NumberProvider">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Provider.NumberProvider.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Provider.NumberProvider.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Provider.Xmi">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Provider.Xmi.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Provider.Xmi.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Reports">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Reports.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Reports.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.TemporaryExtent">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.TemporaryExtent.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.TemporaryExtent.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.TextTemplates">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.TextTemplates.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.TextTemplates.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Types">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Types.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Types.dll</HintPath>
       </Reference>
       <Reference Include="DatenMeister.Validators">
-        <HintPath>..\..\deps\datenmeister\assemblies\Debug\net7.0\DatenMeister.Validators.dll</HintPath>
+        <HintPath>..\..\deps\datenmeister\assemblies\$(Configuration)\net7.0\DatenMeister.Validators.dll</HintPath>
       </Reference>
     </ItemGroup>
 
