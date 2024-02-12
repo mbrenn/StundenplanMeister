@@ -27,6 +27,16 @@ var options = value.Value;
 var pathInput = options.InputExcel;
 var pathResult = options.OutputHtml;
 
+if (string.IsNullOrEmpty(pathInput))
+{
+    pathInput = "../Meetings.xlsx";
+}
+
+if ( string.IsNullOrEmpty(pathResult))
+{
+    pathResult = "Meetings.html";
+}
+
 Console.WriteLine("Hello, StundenplanMeister!");
 
 var integrationSettings = new IntegrationSettings

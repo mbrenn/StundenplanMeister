@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -120,6 +120,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DatenMeister.StundenPlan\DatenMeister.StundenPlan.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Meetings.xlsx">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
