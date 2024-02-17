@@ -32,15 +32,15 @@ public class HtmlStundenPlan : IGenericReportEvaluator<HtmlReportCreator>
 
         // The week rows
         var weekRow = new HtmlTableRow();
-        weekRow.Add(new HtmlTableCell("Monday"));
-        weekRow.Add(new HtmlTableCell("Tuesday"));
-        weekRow.Add(new HtmlTableCell("Wednesday"));
-        weekRow.Add(new HtmlTableCell("Thursday"));
-        weekRow.Add(new HtmlTableCell("Friday"));
+        weekRow.Add(new HtmlTableCell("Monday") { IsHeading = true });
+        weekRow.Add(new HtmlTableCell("Tuesday") { IsHeading = true });
+        weekRow.Add(new HtmlTableCell("Wednesday") { IsHeading = true });
+        weekRow.Add(new HtmlTableCell("Thursday") { IsHeading = true });
+        weekRow.Add(new HtmlTableCell("Friday") { IsHeading = true });
         if (!skipWeekend)
         {
-            weekRow.Add(new HtmlTableCell("Saturday"));
-            weekRow.Add(new HtmlTableCell("Sunday"));
+            weekRow.Add(new HtmlTableCell("Saturday") { IsHeading = true });
+            weekRow.Add(new HtmlTableCell("Sunday") { IsHeading = true });
         }
 
         table.AddRow(weekRow);

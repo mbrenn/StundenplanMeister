@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System.Diagnostics;
+using System.Reflection;
 using Autofac;
 using BurnSystems;
 using BurnSystems.Logging;
@@ -20,6 +21,11 @@ using DatenMeister.StundenPlan;
 using DatenMeister.StundenPlan.Logic;
 using DatenMeister.StundenPlan.Model;
 
+// Gets the path of the assembly
+var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+    ?? throw new InvalidOperationException("AssemblyPath is null");
+
+var workingHoursPerWeek = 40;
 
 var value = Parser.Default.ParseArguments<Options>(args);
 
@@ -29,12 +35,12 @@ var pathResult = options.OutputHtml;
 
 if (string.IsNullOrEmpty(pathInput))
 {
-    pathInput = "../Meetings.xlsx";
+    pathInput = Path.Combine(assemblyPath, "Meetings.xlsx");
 }
 
 if ( string.IsNullOrEmpty(pathResult))
 {
-    pathResult = "Meetings.html";
+    pathResult = Path.Combine(assemblyPath, "Meetings.html");
 }
 
 Console.WriteLine("Hello, StundenplanMeister!");
@@ -131,7 +137,11 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
     hoursTitle.set(_DatenMeister._Reports._Elements._ReportHeadline.title, "Statistics");
 
     var hoursParagraph = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.Elements.__ReportParagraph);
+    var ratioMeeting = totalHours / workingHoursPerWeek * 100;
     hoursParagraph.set(_DatenMeister._Reports._Elements._ReportParagraph.paragraph, $"Meeting hours per week: {totalHours:n2}");
+
+    var ratioPerWeek = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.Elements.__ReportParagraph);
+    ratioPerWeek.set(_DatenMeister._Reports._Elements._ReportParagraph.paragraph, $"Ratio of meetings: {ratioMeeting:n2}%");
 
     var reportDefinition = InMemoryObject.CreateEmpty(_DatenMeister.TheOne.Reports.__ReportDefinition);
     reportDefinition.set(_DatenMeister._Reports._ReportDefinition.elements, new[]
@@ -141,7 +151,8 @@ await using var dm = await GiveMe.DatenMeisterAsync(integrationSettings);
         reportHeaderConflicts,
         conflictReport,
         hoursTitle,
-        hoursParagraph
+        hoursParagraph,
+        ratioPerWeek
     });
 
     report.set(_DatenMeister._Reports._HtmlReportInstance.reportDefinition, reportDefinition);
